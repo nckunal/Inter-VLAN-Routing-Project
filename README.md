@@ -164,4 +164,43 @@ This shows that connection between switch & router are configured properly.
 
 # Router Configuration (Router-on-a-stick)
 There is only one cable between the switch & a router. How router will understand that the packets belongs to which VLAN? Thats why we will create subinterfaces.
+
 **1. Enable Physical Interface**
+- Router>**enable**
+- Router#**Configure terminal**
+- Router(config)#**interface gigabitethernet0/0**
+- Router(config-if)#**no shutdown**
+- Router(config-if)#**exit**
+- Router(config)#
+
+**2. Configure VLAN 10 Subinterface**
+- Router(config)#**interface gigabitethernet0/0.10**
+- Router(config-subif)#**encapsulation dot1Q 10**
+- Router(config-subif)#**ip address 192.168.10.1 255.255.255.0**
+- Router(config-subif)#**exit**
+
+**3. Configure VLAN 20 Subinterface**
+- Router(config)#**interface gigabitethernet0/0.20**
+- Router(config-subif)#**encapsulation dot1Q 20**
+- Router(config-subif)#**ip address 192.168.20.1 255.255.255.0**
+- Router(config-subif)#**end (1 time) OR Control+Z OR exit (2 times) All three works. Ultimate Goal is to come back to Router# prompt**
+- Press Enter
+- Router#
+
+# Verification Commands
+
+**1. Switch**
+- Switch#**show vlan brief**
+
+| VLAN | Name | Status | Ports |
+|------|------|--------|-------|
+| 10 | Sales | active | fa0/1, fa0/2 |
+| 20 | HR | active | fa0/3,fa0/4 |
+
+- Switch#**show interfaces trunk**
+
+| Port | Mode | Encapsulation | Status | Native vlan |
+|------|------|---------------|--------|-------------|
+| fa0/24 | on | 802.1q | trunking | 1 |
+
+**2. Router**
