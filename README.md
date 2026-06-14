@@ -12,13 +12,6 @@ A Cisco switch was configured with multiple VLANs, and a Cisco router was used t
 - Enable communication between different VLANs.
 - Verify connectivity using ping tests.
 
-# Devices Used
-- Cisco 2960 Switch
-- Cisco 1941 Router
-- 4 PCs
-- Copper Straight-Through Cables
-- Cisco Packet Tracer
-
 #  Network Topology
 ```text
 PC1 (VLAN 10) ----\
@@ -69,6 +62,7 @@ If the connection between the switch & router shows **RED TRIANGLE** then it mea
 - Switch(config-if)#**no shutdown**
 
 In this way you can turn on the green light.
+
 # VLAN & IP Address Assignment
 | Device | Department | VLAN | IP Address | Subnet Mask | Switch Port |
 |--------|------------|------|--------------|-----------|--------------|
@@ -82,6 +76,14 @@ In this way you can turn on the green light.
 |------|------------|----------------|----------------|
 | VLAN 10 | Sales | 192.168.10.0/24 | 192.168.10.1 |
 | VLAN 20 | HR | 192.168.20.0/24 | 192.168.20.1 |
+
+# Devices Used
+- Cisco 2960 Switch
+- Cisco 1941 Router
+- 4 PCs
+- Copper Straight-Through Cables
+- Cisco Packet Tracer
+
 
 # Switch Configuration
 **1. Create VLANs**
@@ -204,3 +206,92 @@ There is only one cable between the switch & a router. How router will understan
 | fa0/24 | on | 802.1q | trunking | 1 |
 
 **2. Router**
+- Router>**show ip interface brief**
+
+![Network Topology](Screenshots/Router-IP-Interface-Status-Check.png)
+
+- Router>**show ip route**
+
+![Network Topology](Screenshots/Router-Connected-Network-Check.png)
+
+- Router>**show running-config**
+
+![Network Topology](Screenshots/Router-on-a-Stick-Configuration-(VLAN-10-&-VLAN-20-Subinterfaces).png)
+
+# Connectivity Testing
+
+**1. Same VLAN Test**
+- **PC0** ping **PC1**
+
+![Network Topology](Screenshots/PC0-Same-VLAN-Ping-Test.png)
+
+**1. Inter-VLAN Test**
+- **PC2** ping **PC0 and PC1**
+
+![Network Topology](Screenshots/PC2-Different-VLAN-Ping-Test.png)
+
+Successful ping responses confirmed that routing between VLAN 10 and VLAN 20 was working correctly
+
+# Key Concepts Learned
+- VLAN Creation
+- VLAN Port Assignment
+- Access Ports
+- Trunk Ports
+- 802.1Q VLAN Tagging
+- Router-on-a-Stick
+- Subinterface Configuration
+- IP Addressing
+- Default Gateway Configuration
+- Inter-VLAN Routing
+- Network Verification and Troubleshooting
+
+# Troubleshooting Performed
+- Verified VLAN assignments using **show vlan brief**.
+- Verified trunk configuration using **show interfaces trunk**.
+- Verified subinterface status using **show ip interface brief**.
+- Verified routing table using **show ip route**.
+- Tested communication using ping commands.
+- Checked router and switch interface status.
+
+# Project Outcome
+Successfully implemented Inter-VLAN Routing using the Router-on-a-Stick method.
+- Created VLAN 10 and VLAN 20 on a Cisco switch.
+- Configured access ports and trunk ports.
+- Configured router subinterfaces using 802.1Q encapsulation.
+- Assigned gateway IP addresses for each VLAN.
+- Enabled communication between different VLANs.
+- Verified connectivity using ping and routing verification commands.
+
+The project successfully demonstrated communication between devices located in different VLANs through a single router interface.
+
+# Skills Demonstrated
+- VLAN Configuration
+- Switch Port Assignment
+- Trunk Port Configuration
+- Router-on-a-Stick Configuration
+- 802.1Q VLAN Tagging
+- Inter-VLAN Routing
+- IP Addressing and Subnetting
+- Default Gateway Configuration
+- Cisco Router Configuration
+- Cisco Switch Configuration
+- Network Troubleshooting
+- Connectivity Testing
+- Cisco Packet Tracer
+- TCP/IP Networking
+
+## Thank You
+
+Thank you for reviewing this project.
+
+Feedback and suggestions are always welcome.
+
+## Author
+
+Created by Nirmal Chandra Kunal.
+
+This project demonstrates Inter-VLAN Routing using VLANs, trunking, and Router-on-a-Stick in Cisco Packet Tracer.
+
+GitHub: https://github.com/nckunal
+
+LinkedIn: https://linkedin.com/in/nckunal007
