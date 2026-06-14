@@ -34,6 +34,41 @@ Switch Fa0/24 <---- Trunk Link ----> Router G0/0
 
 ![Network Topology](Screenshots/topology.png)
 
+If the connection between the switch & router shows **RED TRIANGLE** then it means that connection is not working both on physical and configuration level. Follow these steps to fix it.
+
+**1. Check the cable:-**
+- Correct cable is **Copper Straight-Through**.
+- Don't use serial, console, crossover cable.
+- Crossover cable sometimes gives issue.
+
+**2. Check the correct ports:-**
+- Switch (fastethernet0/24) <--------> Router (gigabitethernet0/0)
+
+**3. Turn on the Router Ports (Very Imp):-**
+- By default router port is turned off
+- Click on Router
+- Go to CLI tab
+- Press Enter
+- **Router>** Prompt will shown
+- Router>**enable**
+- Router#**Configure terminal**
+- Router(config)#**interface gigabitethernet0/0**
+- Router(config-if)#**no shutdown**
+- This will turn on the gigabitethernet0/0 port
+
+**4. Turn on the Switch Port:-**
+- Most of the time as soon as you turn ON the router port, the GREEN TRIANGLE LIGHT will be shown for both the switch & router
+- If not, then follow these commands:-
+- Click on Switch
+- Go to CLI tab
+- Press Enter
+- **Switch>** Prompt will shown
+- Switch>**enable**
+- Switch#**Configure terminal**
+- Switch(config)#**interface fastethernet0/24**
+- Switch(config-if)#**no shutdown**
+
+In this way you can turn on the green light.
 # VLAN & IP Address Assignment
 | Device | Department | VLAN | IP Address | Subnet Mask | Switch Port |
 |--------|------------|------|--------------|-----------|--------------|
@@ -119,3 +154,14 @@ The trunk port is needed because a single switch port needs to carry traffic fro
 - Switch(config-if-range)#
 
 **4. Verify Switch Trunk Port**
+- Switch#**show interfaces trunk**
+
+| Port | Mode | Encapsulation | Status | Native vlan |
+|------|------|---------------|--------|-------------|
+| fa0/24 | on | 802.1q | trunking | 1 |
+
+This shows that connection between switch & router are configured properly.
+
+# Router Configuration (Router-on-a-stick)
+There is only one cable between the switch & a router. How router will understand that the packets belongs to which VLAN? Thats why we will create subinterfaces.
+**1. Enable Physical Interface**
